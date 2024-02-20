@@ -3,12 +3,8 @@
     "builds": [
       {
         "src": "index.js", 
-        "use": "@vercel/node",
-        "config": {
-            "includeFiles": [
-              "./node_modules/bcrypt/lib/binding/napi-v3/bcrypt_lib.node"
-            ]
-          }
+        "use": "@vercel/node"
+        
       }
     ],
     "routes": [
