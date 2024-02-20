@@ -1,5 +1,5 @@
 const UserModel = require("../models/userModel");
-const bcryp = require('bcrypt');
+const bcryp = require('bcryptjs');
 const asyncHandle = require('express-async-handler');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
