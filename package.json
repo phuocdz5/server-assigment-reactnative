@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
     "prebuild": "rm -rf node_modules/bcrypt && npm install bcryptjs"
+    
   },
   "keywords": [],
   "author": "",
