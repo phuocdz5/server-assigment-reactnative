@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 app.use('/auth' , authRouter);
-// app.use('/product',productRouter)
+app.use('/product',productRouter)
 connectDB();
 
 app.use(errorMiddleHandle);
