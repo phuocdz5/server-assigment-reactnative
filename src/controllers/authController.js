@@ -130,7 +130,7 @@ const forgotPassword = asyncHandle(async(req, res) => {
 
     const randomPassword = Math.round(100000 + Math.random() * 99000);
     const data = {
-        from: `Mật Khẩu Mới <duccu1403@gmail.com>`, // sender address
+        from: `Mật Khẩu Mới <lynaxhai624@gmail.com>`, // sender address
         to: email, // list of receivers
         subject: "Verification email code", // Subject line
         text: "Your code to verificayion email", // plain text body
