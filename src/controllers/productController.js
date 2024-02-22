@@ -3,7 +3,7 @@ const ProductModel = require('../models/productModel')
 
 const getAllProduct = asyncHandle(async (req,res)=>{
     try {
-        const products = await Product.find();
+        const products = await ProductModel.find();
         res.status(200).json({
             message: 'Products retrieved successfully',
             data: products,
