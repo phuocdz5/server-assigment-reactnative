@@ -9,8 +9,8 @@ const transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587, // port của gmail là 587
     auth: {
-        user: "duccu1403@gmail.com",
-        pass: "evun ootr oltj khhw",
+        user: "lynaxhai624@gmail.com",
+        pass: "qoet exsj fwhw qhse",
     },
 })
 
@@ -45,7 +45,7 @@ const verification = asyncHandle(async (req, res) => {
 
     try {
         const data = {
-            from: `Coffee_App DMon's Duy Duc <duccu1403@gmail.com>`, // sender address
+            from: `CoffeeApp_NguyenTienPhuoc  <lynaxhai624@gmail.com>`, // sender address
             to: email, // list of receivers
             subject: "Verification email code", // Subject line
             text: "Your code to verificayion email", // plain text body
