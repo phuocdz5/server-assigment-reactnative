@@ -41,11 +41,7 @@ const PriceSchema = new mongoose.Schema({
     type: {
       type: String,
       required: true,
-    },
-    index: {
-      type: Number,
-      required: true,
-    },
+    }
   });
   
   const ProductModel = mongoose.model('product', ProductSchema);
