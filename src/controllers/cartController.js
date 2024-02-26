@@ -11,7 +11,12 @@ const addCart = asyncHandle(async (req, res) => {
         // Nếu chưa có giỏ hàng, tạo mới và thêm sản phẩm vào
         const newCart = new CartModel({
             email,
-            items: [{ imagelink_square, name, roasted, size, price, quantity }],
+            imagelink_square,
+            name,
+            roasted,
+            price,
+            size,
+            quantity
         });
 
         await newCart.save();
