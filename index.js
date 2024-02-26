@@ -5,6 +5,7 @@ const authRouter = require('./src/routers/authRouter');
 const connectDB = require('./src/configs/connectDb');
 const errorMiddleHandle = require('./src/middlewares/errorMiddleWare');
 const productRouter = require('./src/routers/productRouter');
+const cartRouter = require('./src/routers/cartRouter');
 const app = express();
 require('dotenv').config();
 app.use(cors());
@@ -15,6 +16,7 @@ app.use(express.json());
 
 app.use('/auth' , authRouter);
 app.use('/product',productRouter)
+app.use('/cart' , cartRouter);
 connectDB();
 
 app.use(errorMiddleHandle);
