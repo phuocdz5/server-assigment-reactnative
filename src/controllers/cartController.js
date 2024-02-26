@@ -23,14 +23,14 @@ const addCart = asyncHandle(async (req, res) => {
         return res.status(201).json(newCart);
     } else {
         // Nếu đã có giỏ hàng
-        const existingItemIndex = cart.items.findIndex(item => item.name === req.body.name);
+        const existingItemIndex = cart.findIndex(item => item.name === req.body.name);
 
         if (existingItemIndex !== -1) {
             // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng lên 1
-            cart.items[existingItemIndex].quantity += 1;
+            cart[existingItemIndex].quantity += 1;
         } else {
             // Nếu sản phẩm chưa có trong giỏ hàng, thêm vào giỏ hàng
-            cart.items.push({ imagelink_square, name, roasted, size, price, quantity });
+            cart.push({ imagelink_square, name, roasted, size, price, quantity });
         }
 
         // Lưu giỏ hàng mới vào cơ sở dữ liệu
