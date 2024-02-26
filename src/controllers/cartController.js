@@ -1,44 +1,33 @@
-const asyncHandle = require('express-async-handler')
-const CartModel = require('../models/cartModel')
-
-const addCart = asyncHandle(async (req, res) => {
+const addCart = async (req, res) => {
     const { email, imagelink_square, name, roasted, size, price, quantity } = req.body;
 
-    // Tìm giỏ hàng của người dùng theo email
-    const cart = await CartModel.findOne({ email });
+    // Get the user's cart (assuming there is a cart field in the user document)
+    const userCart = await CartModel.findOne({ email });
 
-    if (!cart) {
-        // Nếu chưa có giỏ hàng, tạo mới và thêm sản phẩm vào
+    if (!userCart) {
+        // If the user doesn't have a cart, create a new one
         const newCart = new CartModel({
             email,
-            imagelink_square,
-            name,
-            roasted,
-            price,
-            size,
-            quantity
+            items: [{ imagelink_square, name, roasted, size, price, quantity }],
         });
 
         await newCart.save();
         return res.status(201).json(newCart);
-    } else {
-        // Nếu đã có giỏ hàng
-        const existingItemIndex = cart.findIndex(item => item.name === req.body.name);
-
-        if (existingItemIndex !== -1) {
-            // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng lên 1
-            cart[existingItemIndex].quantity += 1;
-        } else {
-            // Nếu sản phẩm chưa có trong giỏ hàng, thêm vào giỏ hàng
-            cart.push({ imagelink_square, name, roasted, size, price, quantity });
-        }
-
-        // Lưu giỏ hàng mới vào cơ sở dữ liệu
-        await cart.save();
-
-        return res.status(200).json(cart);
     }
-});
-module.exports = {
-    addCart
-}
+
+    // If the user already has a cart, check if the item is already in the cart
+    const itemIndex = userCart.items.findIndex((item) => item.name === name && item.size === size);
+
+    if (itemIndex !== -1) {
+        // If the item is already in the cart, update the quantity
+        userCart.items[itemIndex].quantity += quantity;
+    } else {
+        // If the item is not in the cart, add a new item
+        userCart.items.push({ imagelink_square, name, roasted, size, price, quantity });
+    }
+
+    await userCart.save();
+    return res.status(200).json(userCart);
+};
+
+module.exports = { addCart };
