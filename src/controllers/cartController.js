@@ -23,7 +23,7 @@ const addCart = asyncHandle(async (req, res) => {
         return res.status(201).json(newCart);
     } else {
         // Nếu đã có giỏ hàng
-        const existingItemIndex = cart.items.findIndex(item => item.id === req.body.id);
+        const existingItemIndex = cart.items.findIndex(item => item.name === req.body.name);
 
         if (existingItemIndex !== -1) {
             // Nếu sản phẩm đã tồn tại trong giỏ hàng, tăng số lượng lên 1
