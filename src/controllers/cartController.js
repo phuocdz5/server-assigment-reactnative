@@ -7,8 +7,7 @@ const addCart = async (req, res) => {
     if (!userCart) {
         // If the user doesn't have a cart, create a new one
         const newCart = new CartModel({
-            email,
-            items: [{ imagelink_square, name, roasted, size, price, quantity }],
+            email,imagelink_square, name, roasted, size, price, quantity 
         });
 
         await newCart.save();
@@ -16,14 +15,14 @@ const addCart = async (req, res) => {
     }
 
     // If the user already has a cart, check if the item is already in the cart
-    const itemIndex = userCart.items.findIndex((item) => item.name === name && item.size === size);
+    const itemIndex = userCart.findIndex((item) => item.name === name && item.size === size);
 
     if (itemIndex !== -1) {
         // If the item is already in the cart, update the quantity
-        userCart.items[itemIndex].quantity += quantity;
+        userCart[itemIndex].quantity += quantity;
     } else {
         // If the item is not in the cart, add a new item
-        userCart.items.push({ imagelink_square, name, roasted, size, price, quantity });
+        userCart.push({ imagelink_square, name, roasted, size, price, quantity });
     }
 
     await userCart.save();
